@@ -54,6 +54,15 @@ window.showLevelUpEvent = function(level) {
 function startGame() {
     document.getElementById("mainMenu").style.display = "none";
     document.getElementById("gameContainer").style.display = "block";
+    
+    // Запускаем музыку для текущей локации при первом входе
+    import('./audio.js').then(module => {
+        module.initAudio();
+        setTimeout(() => {
+            module.playMusicForLocation(player.currentTheme || "forest");
+        }, 100);
+    });
+    
     init();
 }
 
@@ -169,10 +178,8 @@ function init() {
         if (gameCompleted) { 
             updateModifiersSelectorUI(); 
             const modifiersSelector = document.getElementById("modifiersSelector");
-            if (modifiersSelector) modifiersSelector.style.display = "block";
+            if (modifiersSelector) modifiersSelector.style.display = "block"; 
         }
-        
-        initAudio();
     } else {
         setCanSave(false);
         document.body.className = "theme-forest";
@@ -192,6 +199,22 @@ function init() {
         
         showPrologue();
     }
+    
+    // Инициализация аудио
+    initAudio();
+    
+    // Запуск музыки при первом клике (обходит автозапрет браузера)
+    const startMusicOnFirstClick = () => {
+        if (player.currentTheme) {
+            playMusicForLocation(player.currentTheme);
+        } else {
+            playMusicForLocation("forest");
+        }
+        document.removeEventListener('click', startMusicOnFirstClick);
+        document.removeEventListener('touchstart', startMusicOnFirstClick);
+    };
+    document.addEventListener('click', startMusicOnFirstClick);
+    document.addEventListener('touchstart', startMusicOnFirstClick);
     
     // Привязка обработчиков событий
     const payBailBtn = document.getElementById("payBailBtn");
