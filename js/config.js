@@ -8,7 +8,7 @@ export const EXP_FOR_LEVEL = {
 };
 
 export const THEME_UNLOCK = { forest: 1, cyberpunk: 6, space: 11, church: 16 };
-export const THEME_MULTIPLIERS = { forest: 1, cyberpunk: 2, space: 3, church: 5 };
+export const THEME_MULTIPLIERS = { forest: 1, cyberpunk: 1.5, space: 2, church: 2.5 };
 export const THEME_RISK = { forest: 0, cyberpunk: 0.05, space: 0.1, church: 0.15 };
 export const themeOrder = ["forest", "cyberpunk", "space", "church"];
 
