@@ -136,9 +136,9 @@ export function updateThemeButtonsWithLock() {
     
     const names = { 
         forest: "🌲 Лес (x1)", 
-        cyberpunk: "💜 Киберпанк (x2)", 
-        space: "🚀 Космос (x3)", 
-        church: "⛪ Церковь (x5)" 
+        cyberpunk: "💜 Киберпанк (x1.5)", 
+        space: "🚀 Космос (x2)", 
+        church: "⛪ Церковь (x2.5)" 
     };
     
     themeBtns.forEach(btn => {
