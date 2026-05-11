@@ -82,49 +82,12 @@ function exitToMenu() {
 
 function resetProgress() {
     if (confirm("⚠️ СБРОСИТЬ ВЕСЬ ПРОГРЕСС? Всё начнётся заново!")) {
-        // Сброс сохранений
         localStorage.removeItem("nekoSlotSave");
         localStorage.removeItem("nekoAchievements");
         localStorage.removeItem("nekoPlaythroughCount");
-        
-        // Сброс глобальных переменных через resetGameState
-        resetGameState();
-        
-        // Сброс достижений
-        for (let key in achievements) {
-            achievements[key].unlocked = false;
-        }
-        saveAchievements();
-        
-        // Обновление UI
-        document.body.className = "theme-forest";
-        applyThemeBackground("forest");
-        player.currentTheme = "forest";
-        
-        const slotCells = [document.getElementById("s0"), document.getElementById("s1"), document.getElementById("s2")];
-        for(let i=0;i<3;i++) {
-            if (slotCells[i]) slotCells[i].innerText = FRUITS[Math.floor(Math.random()*FRUITS.length)];
-        }
-        
-        updateUI(); 
-        updateAchievementsUI(); 
-        updateModifiersUI();
-        
-        const jailPanel = document.getElementById("jailPanel");
-        if (jailPanel) jailPanel.style.display = "none";
-        
-        const spinBtn = document.getElementById("spinBtn");
-        const jobBtn = document.getElementById("jobBtn");
-        if (spinBtn) spinBtn.disabled = false;
-        if (jobBtn) jobBtn.disabled = false;
-        
-        const msg = document.getElementById("msg");
-        if (msg) msg.innerHTML = "🔄 ПРОГРЕСС СБРОШЕН! 🔄";
-        
-        showPrologue();
+        location.reload();
     }
 }
-
 function showPrologue() {
     const modal = document.getElementById("storyModal");
     const modalText = document.getElementById("modalText");
